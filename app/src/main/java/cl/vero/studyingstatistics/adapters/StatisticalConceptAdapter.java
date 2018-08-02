@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import cl.vero.studyingstatistics.R;
@@ -16,7 +14,11 @@ import cl.vero.studyingstatistics.models.StatisticalConcept;
 
 public class StatisticalConceptAdapter extends RecyclerView.Adapter<StatisticalConceptAdapter.ViewHolder>{
 
-    List<StatisticalConcept> statisticalConcepts = new ArrayList<>();
+    public StatisticalConceptAdapter(List<StatisticalConcept> statisticalConcepts) {
+        this.statisticalConcepts = statisticalConcepts;
+    }
+
+    List<StatisticalConcept> statisticalConcepts;
 
     @NonNull
     @Override
@@ -30,7 +32,17 @@ public class StatisticalConceptAdapter extends RecyclerView.Adapter<StatisticalC
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         StatisticalConcept statisticalConcept = statisticalConcepts.get(i);
         viewHolder.nameConcept.setText(statisticalConcept.getName());
-        viewHolder.gradeConcept.setImageResource(statisticalConcept.getGrade());
+
+        int image;
+        if (statisticalConcept.getGrade() == 1){
+            image = 0x7f0d0000;
+        } else { if (statisticalConcept.getGrade() == 2){
+            image = 0x7f0d0001;
+        } else { if (statisticalConcept.getGrade() == 3){
+            image = 0x7f0d0002;
+        } else { image = 0x7f0d0003; }}}
+
+        viewHolder.gradeConcept.setImageResource(image);
 
     }
 
