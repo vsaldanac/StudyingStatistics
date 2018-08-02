@@ -51,6 +51,11 @@ public class StatisticalConceptAdapter extends RecyclerView.Adapter<StatisticalC
         return statisticalConcepts.size();
     }
 
+    public void update(StatisticalConcept statisticalConcept){
+        statisticalConcepts.add(statisticalConcept);
+        notifyDataSetChanged();
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView nameTitle, gradeTitle, nameConcept;
